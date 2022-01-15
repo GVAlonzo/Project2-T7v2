@@ -1,2 +1,10 @@
-# Project2-T7v2
-Project2-T7 Visualizing the Top 100 U.S. Independent Restaurants of 2020
+# Project2-T7
+Repository for Project 2 - Team 7
+
+
+### PREREQUISITES ###
+
+- Local installation of MongoDB
+- Valid MapBox API key (store in `/static/js/config.js`)
+- Install the FLASK-CORS package: In *GitBash*, type `$ pip install -U flask-cors`
+

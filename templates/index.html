@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 
+  <title>Top 100 Restaurants Visualized</title>
+  <link rel="icon" type="image/x-icon" href="/static/Images/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet1" href="/stylesheet.css">
+ 
+ 
+ <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .jumbotron{
+  background-image: url("/static/Images/dan-gold-E6HjQaB7UEA-unsplash.jpg");
+  background-size: cover;
+  height: 40%;
+  color:white;
+  
+}
+  </style>
+
+<style type="text/css">
+  .chartBox{
+      width: 1600px;
+      /* GVA CHANGED WIDTH */
+  }
+</style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+<!-- function for copying text to clipboard but not used -->
+<script>
+function copyToClipboard(elementId) {
+
+// Create a "hidden" input
+var aux = document.createElement("input");
+
+// Assign it the value of the specified element
+aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+// Append it to the body
+document.body.appendChild(aux);
+
+// Highlight its content
+aux.select();
+
+// Copy the highlighted text
+document.execCommand("copy");
+
+// Remove it from the body
+document.body.removeChild(aux);
+
+}
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  <header>
+
+
+
+  
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">This project was organized and implemented by Northwestern University Data and Visualization Bootcamp students from the 2021-2022 cohort. Additional credit goes to our dedicated and supportive instructor and TA staff. Additional information about the project can be found in the links at right.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Project Info</h4>
+            <ul class="list-unstyled copy-text">
+              <li><a href="https://github.com/GVAlonzo/Project2-T7" target="_blank"><img src="/static/Images/GitHub-Mark-Light-32px.png"</a></li>
+              <!-- <li><a href="#" class="text-white"></a></li> -->
+              <br>
+              <li><a href="mailto: herrric@hawk.iit.edu"><img src="/static/Images/main_icon.png"></a></li>
+              <br>
+
+              <!-- <p id="p1">https://www.restaurantbusinessonline.com/top-100-independents-2020</p> -->
+              <!-- <li><button onclick="copyToClipboard('https://www.restaurantbusinessonline.com/top-100-independents-2020')"><img src="/static/Images/link-5-32.ico"></button><p class="text-white"></p></li> -->
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <!-- another route for data or mongoDB JSON can be placed here in the Data link  -->
+        <a href="/data" target="_blank" class="navbar-brand d-flex align-items-center">
+          <img src="/static/Images/about-the-data-icon.png" width=32px hieght=32px </a>
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+          <strong>Data</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+
+  
+  <div class="container">
+
+    <div class="jumbotron mt-3 text-center">
+      <h1>Top 100 Independent Restaurants<br/>Visualized</h1>
+    </div>
+
+
+         
+     <!-----------------Intro------------------>  
+    <div class="row align-items-center"" id="Intro">
+      
+      <div class="col-md-12">
+        <p> We explore the top 100 U.S. Independent Restaurants, a ranking measuring the highest-grossing independent restaurants in 2020. Only restaurant concepts with no more than five locations are considered "independents". Here we take a visual exploration of where they are located and how they compare.  </p>
+     <br>       
+    </div>
+    
+    
+
+
+     <!-----------------Leaflet Map------------------>  
+    <div class="row align-items-center" id="leaflet">   
+          
+            
+      <div class="col text-center">
+      <h4>Locations in the US - CLICK IMAGE BELOW TO INTERACT WITH THE MAP</h4>
+        <!-- <img src="/static/Images/plotlythumb.jpg" class=img-fluid alt="USA map thumbnail">   -->
+          <a href="/cluster" target="_blank">
+         <img  alt="Qries" src="/static/Images/plotlythumb.jpg" width="550 height="300"></a>
+        <br><br><br>
+      </div>
+    
+    </div>
+    
+
+    <!-----------------Bubble Chart------------------>
+      
+          
+    <div class="row justify-content-center" id="barchart">
+      <br>
+      <br>
+        <div class="col text-center">       
+      <br>
+      <h4>Comparison of Sales to Number of Meals Served</h4>
+
+        </div>
+    </div>
+
+      <div class="chartBox">
+        <!-- GVA ADDING WIDTH AND HEIGHT -->
+      <canvas id="myChart" width="1600" height="400"></canvas> 
+      
+     </div>  
+      
+    <br>
+    <br>
+    <br>
+      
+     <!-----------------BarChart------------------>
+     <div class="row justify-content-center" id="barchart">
+
+
+      <div class="col-md-11">
+        <br>
+        <div id="bar"></div>
+        
+      </div>
+    </div>
+
+    <br>
+    <!-- Distance -->
+    <div class="row justify-content-center" id="barchart">
+      
+      <div class="col-md-6">
+      <p>Click the button to get your coordinates and find the closest Top 100 Restaurant</p>
+
+    <button id="filter-btn" onclick="getLocation()">Get Location</button>
+
+      <p id="demo"></p>
+      <p>The closest location to you is:</p>
+    </div>
+  </div> 
+    
+    <script>
+      var x = document.getElementById("demo");
+      
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+      
+      function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+      }
+      </script>
+
+    <!-- Restaurant table -->
+
+    <div class="col-md-10">
+      <div id="table-area" class="">
+        <table id="rest-table" class="table table-striped">
+          <thead>
+            <tr>
+              <th class="table-head">RANK</th>
+              <th class="table-head">RESTAURANT</th>
+              <th class="table-head">CITY</th>
+              <th class="table-head">STATE</th>
+              <th class="table-head">AVERAGE MEAL</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#">Back to top</a>
+      </p>
+      <p class="mb-1">A Northwestern University Data Science and Visualization Bootcamp Project 2021-2022</p>
+      <p class="mb-0"></a></p>
+    </div>
+  </footer>
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  
+ 
+ <!-- required JS for plotly chart -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="/static/js/plotlybar.js"></script>
+
+
+
+  <!-- required JS for bubblechart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <script src="/static/js/plot.js"></script>
+
+  <!-- required for nearest logic -->
+  <script src="/static/js/nearest.js"></script>
+  
+
+</body>
+
+</html>

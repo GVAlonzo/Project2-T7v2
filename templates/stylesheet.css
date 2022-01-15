@@ -1,0 +1,92 @@
+
+
+
+
+.jumbotron{
+  background-image: url("/Images/dan-gold-E6HjQaB7UEA-unsplash.jpg");
+  background-size: cover;
+  height: 40%;
+  
+}
+
+
+.h1{
+
+  font:'Georgia';
+}
+
+
+/* old css */
+
+
+ .border {
+   
+   padding: 75px;
+   
+ }
+
+ .dropdown-item {
+  text-align: right;
+
+
+ }
+ .container {
+  height: 800px;
+  padding-top: 20px;
+  background: #cdcdcd;
+}
+
+.display-4{
+
+  
+  display:flex;
+  font-size:50px;
+  color: #4aaaa5;
+  position:center;
+  font-family:'Georgia';
+
+}
+
+#initial-image1 {
+  height: 300px;
+  float:left;
+  display:flex;
+  justify-content: center;
+
+
+}
+#initial-image {
+  height: 200px;
+  justify-content: center;
+  
+
+}
+
+
+
+.navbar-light .navbar-brand{
+  
+  color:white;
+  border-radius: 3px;
+  background:#4aaaa5;
+  display:inline-block;
+  font-family:'Georgia';
+}
+.container {
+  height: 800px;
+  padding-top: 20px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom:20px;
+  background:white;
+  color:black;
+} 
+  
+.col-md-6 {
+
+  padding: 20px;
+  background:white;
+  box-shadow: whitesmoke;
+  
+
+}

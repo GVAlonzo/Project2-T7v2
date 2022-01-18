@@ -1,3 +1,19 @@
+// *****************************************************************
+// **  Project 2 - Team 7
+// **     - George Alonzo
+// **     - Ricardo Herrera
+// **     - Tim Reynolds
+// **     - Kelly Rowens
+// **
+// **   Visualizing the Top 100 U.S. Independent Restaurants of 2020
+// **
+// **   This script creates a cluster map based on the
+// **     Flask API route /api/v1.0/alldata visualizing:
+// **       - Clusters of restaurants by regional groupings
+// **
+// *****************************************************************
+
+
 // Creating map object
 var myMap = L.map("map", {
   center: [40.7, -93.95],
@@ -29,10 +45,11 @@ d3.json(apiURL).then(function(response) {
     // Set the data location property to a variable
     var restaurant = response[i];
     
-    // Check for location property
+    // Check for restaurant property
     if (restaurant) {
 
       // Add a new marker to the cluster group and bind a pop-up
+      // displaying: Restaurant Name, City, Rank, Average Check $, # Meals Served, and Sales $
       markers.addLayer(L.marker([restaurant.Lat, restaurant.Lng])
         .bindPopup("<h2>" + restaurant.Restaurant.toUpperCase() + "</h2>"
                         + "<h3> City: " + restaurant.City + "</h3>"

@@ -1,35 +1,38 @@
-// console.log("Loaded plot.js");
+// *****************************************************************
+// **  Project 2 - Team 7
+// **     - George Alonzo
+// **     - Ricardo Herrera
+// **     - Tim Reynolds
+// **     - Kelly Rowens
+// **
+// **   Visualizing the Top 100 U.S. Independent Restaurants of 2020
+// **
+// **   This script uses Chart.js to provide a bubble chart to
+// **     display Number of Mals Served (x axis) and
+// **     Annual sales in US Dollars (y axis).
+// **     Bubble radius is based on Average Check $.
+// **     Color randomizer helps better differentiate bubbles.
+// **
+// *****************************************************************
+
 
 // // Store API query variables
+var apiURL = "/api/v1.0/alldata"
+//      \/ USE THIS FOR INITIAL TESTING WITH LIVE SERVER \/
+// var apiURL = "http://127.0.0.1:5000/api/v1.0/alldata"
 
-var apiURL = "/api/v1.0/alldata" //GVA COMMENT-OUT
-// var apiURL = "http://127.0.0.1:5000/api/v1.0/alldata"  //GVA ADDED ADDRESS TEMPORARILY FOR LIVE SERVER
 
 // Grab the data with d3 and beginning of the function
 d3.json(apiURL).then(function(response) {
-    //console.log(response);
-    // console.log(apiURL);
-
-    // console.log("Response",response); //GVA
 
     //map arrays
     const myLabelsRes = response.map(o => o.Restaurant);
     const myDataSales = response.map(o => o.Sales);     
-    // const avg_check = response.map(o => o["Average_Check"]); //GVA Possible database version differences
-    // const meals_served = response.map(o => o["Meals_Served"]); //GVA Possible database version differences
-    const avg_check = response.map(o => o.Average_Check); //GVA Possible database version differences
-    const meals_served = response.map(o => o.Meals_Served); //GVA Possible database version differences
+    const avg_check = response.map(o => o.Average_Check);
+    const meals_served = response.map(o => o.Meals_Served);
     const ranks = response.map(o => o.Rank);
     const city = response.map(o => o.City);
 
-    //check everything loads
-    // console.log(myLabelsRes);
-    // console.log(myDataSales);
-    // console.log("Avg Check!",avg_check);
-    // console.log("Meals",meals_served);
-    // console.log("Rank",ranks);
-    // console.log("city",ranks);
-///////////////////////////////////////////////////////////////////////////////
 const holdData = []; 
 
 // add 100 sub-object values, I could make it length
@@ -38,17 +41,14 @@ for(i = 0; i < 100; ++i) {
          = { 
              x: meals_served[i], 
              y: myDataSales[i], 
-             r: avg_check[i]/7, //GVA DIVIDING BY 4 TO DECREASE RADIUS FOR IMPROVED VIEWABILIT
+             r: avg_check[i]/7, // DIVIDING BY 7 TO DECREASE RADIUS FOR IMPROVED VIEWABILIT
              z: myLabelsRes[i],
              rank: ranks[i],
              city: city[i]           
             }; 
 }
-//check
-// console.log("fulldata", holdData);
 
-//this }); on line 37 is the end the function response on line 9, move the semicolon down when replacing data
-// }); //GVA comment-out & moved to bottom
+
 //////////////////////////////////////////////////////////////////////////////////
 
 //all this was the fake data to make it work
@@ -61,7 +61,6 @@ const my_data = [
     {x: 4, y: 57, r: 9},
     {x: 5, y: 9, r: 15}
 ]
-// console.log(my_data);
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +73,6 @@ while (innerColor.length < holdData.length) {
 } while (innerColor.indexOf(s) >= 0);
     innerColor.push('rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')');
 }
-// console.log("IN Color",innerColor);
 
 //if I wanted to change the outline of the bubble, currently not using
 const outColor = []
@@ -84,7 +82,6 @@ while (outColor.length < my_data.length) {
 } while (outColor.indexOf(s) >= 0);
     outColor.push('rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + 1 + ')');
 }
-// console.log("OUT Color",outColor);
 
 // or have the outtter border be the same just choose ['rgba(0, 0, 17, 0.81)']
 
@@ -117,13 +114,6 @@ while (outColor.length < my_data.length) {
         yAlign: 'bottom',
         callbacks: {
             title: function(chart){
-                // console.log(chart)
-                // console.log(chart[0].raw.x)
-                // console.log(chart[0].raw.y)
-                // console.log(chart[0].raw.r)
-                // console.log(chart[0].raw.z)
-                // console.log(chart[0].raw.rank)
-                // console.log(chart[0].raw.city)
                 const showz = chart[0].raw.z
                 const showr = (chart[0].raw.r)*7
                 const showRank = chart[0].raw.rank
@@ -158,21 +148,6 @@ while (outColor.length < my_data.length) {
               color: 'red',
               display: true,
               text: 'Number of Meals Served in 2020'
-            // },
-        //     ticks: {
-        //         callback: function(value){
-        //             const valueLegend1 = this.getLableForValue(value);
-        //             const valueLegendRep1 = valueLegend1.replaceAll(',','');
-        //             if (valueLegendRep1.length === 1) {
-        //                 return valueLegendRep1;
-        //             }
-        //             if (valueLegendRep1.length === 6){
-        //                 return valueLegendRep1.substr(0,3) +'K'; 
-        //             }
-        //             if (valueLegendRep1.length === 7){
-        //                 return valueLegendRep1.substr(0,4) +'K';
-        //             }
-        //         }
             }
         },
         y: {
@@ -181,28 +156,11 @@ while (outColor.length < my_data.length) {
               color: 'red',
               display: true,
               text: 'Annual sales in U.S Dollars'
-            }//,
-            // ticks: {
-            //     callback: function(value){
-            //         const valueLegend = this.getLableForValue(value);
-            //         const valueLegendRep = valueLegend.replaceAll(',','');
-            //         if (valueLegendRep.length === 1) {
-            //             return valueLegendRep;
-            //         }
-            //         if (valueLegendRep.length === 7){
-            //             return valueLegendRep.substr(0,1) +'M'; 
-            //         }
-            //         if (valueLegendRep.length === 8){
-            //             return valueLegendRep.substr(0,2) +'M';
-            //         }
-            //     }
-            // }
+            }
         },
     }
     }
     }
-
-
 
     // init render block
     const myChart = new Chart(
